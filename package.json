@@ -1,7 +1,7 @@
 {
   "name": "taishan-vision",
   "description": "泰山识图 Taishan Vision - 让 DeepSeek Harness 纯文本模型也能识图:GLM 视觉识别 + 所选模型推理(静态插件包,重启永久生效;由鲸晴 JingQing v1.1.8 魔改)",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "keywords": [
     "deepseek",
