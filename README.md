@@ -1,4 +1,4 @@
-# 泰山识图 Taishan Vision v2.0
+# 泰山识图 Taishan Vision v2.0.1
 
 <p align="center">
   <img src="banner.png" style="width:100%; height:auto; border-radius:16px;" alt="泰山识图" />
@@ -46,10 +46,10 @@
 ### 方式一:GitHub 一键安装(推荐)
 
 ```bash
-dsh plugin --profile web add github:iguanren/taishan-vision#v2.0.0
+dsh plugin --profile web add github:iguanren/taishan-vision#v2.0.1
 ```
 
-DSH 会自动安装并把插件加入 profile 组合层,**重启 DSH 后生效**(无需手动改任何配置)。不想锁定版本可去掉 `#v2.0.0` 安装最新。
+DSH 会自动安装并把插件加入 profile 组合层,**重启 DSH 后生效**(无需手动改任何配置)。不想锁定版本可去掉 `#v2.0.1` 安装最新。
 
 > 如安装时报 pnpm 构建拦截提示,确认本插件无构建脚本时按提示放行即可(最新版通常无此问题)。
 
