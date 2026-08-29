@@ -1,0 +1,92 @@
+name: 🐛 Bug 报告
+description: 报告泰山识图插件的问题
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        感谢报告问题!请尽量填写完整信息,尤其是 **taishan_diag 输出**(在对话中让模型调用 `taishan_diag` 工具即可获得),它能帮我们快速定位。
+
+  - type: input
+    id: dsh-version
+    attributes:
+      label: DSH 版本
+      description: 运行 `dsh --version` 查看
+      placeholder: 例如 0.1.0-rc.7
+    validations:
+      required: true
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: 操作系统
+      options:
+        - Windows
+        - macOS
+        - Linux
+    validations:
+      required: true
+
+  - type: dropdown
+    id: install-method
+    attributes:
+      label: 安装方式
+      options:
+        - dsh plugin add(git 安装)
+        - 手动复制(node_modules)
+        - 其他
+    validations:
+      required: true
+
+  - type: textarea
+    id: taishan-diag
+    attributes:
+      label: taishan_diag 输出
+      description: 在 DSH 对话中让模型调用 taishan_diag 工具,把返回内容粘贴到这里
+      placeholder: |
+        {
+          "scan": { ... },
+          "config": { ... },
+          ...
+        }
+      render: json
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 如何触发该问题?
+      placeholder: |
+        1. 打开设置 → 泰山识图
+        2. 点击 ...
+        3. 看到报错 ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望行为
+      description: 你期望发生什么?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为
+      description: 实际发生了什么?请附上错误信息或截图
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: config
+    attributes:
+      label: 配置确认(请勾选已确认项)
+      options:
+        - label: 已申请并配置 ZHIPU_GLM_API_KEY(面板或 ~/.dsh/.credentials.yaml)
+        - label: 重启过 DSH(静态插件需重启生效)
+        - label: 面板显示模型 Key:已配置 ✅
