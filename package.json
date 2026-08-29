@@ -1,0 +1,37 @@
+{
+  "name": "taishan-vision",
+  "description": "泰山识图 Taishan Vision - 让 DeepSeek Harness 纯文本模型也能识图:GLM 视觉识别 + 所选模型推理(静态插件包,重启永久生效;由鲸晴 JingQing v1.1.8 魔改)",
+  "version": "1.0.0",
+  "private": true,
+  "keywords": [
+    "deepseek",
+    "deepseek-harness",
+    "dsh",
+    "vision",
+    "image-recognition",
+    "zhipu",
+    "glm",
+    "免费识图"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-locale",
+        "@deepseek-ai/dsh-client-runtime",
+        "@deepseek-ai/dsh-client-ui-primitives"
+      ]
+    }
+  },
+  "license": "MIT"
+}
