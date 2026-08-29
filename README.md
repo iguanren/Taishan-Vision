@@ -4,7 +4,7 @@
   <img src="banner.png" style="width:100%; height:auto; border-radius:16px;" alt="泰山识图" />
 </p>
 
-![version](https://img.shields.io/badge/version-v2.0.0-2563EB)
+![version](https://img.shields.io/badge/version-v2.0.1-2563EB)
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![models](https://img.shields.io/badge/识别模型-GLM%20免费-16A34A)
 ![install](https://img.shields.io/badge/install-dsh%20plugin-8B5CF6)
