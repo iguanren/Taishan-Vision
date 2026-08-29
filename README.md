@@ -1,5 +1,10 @@
 # 泰山识图 Taishan Vision v1.0
 
+![version](https://img.shields.io/badge/version-v1.0.0-2563EB)
+![license](https://img.shields.io/badge/license-MIT-green)
+![models](https://img.shields.io/badge/识别模型-GLM%20免费-16A34A)
+![install](https://img.shields.io/badge/install-dsh%20plugin-8B5CF6)
+
 让 DeepSeek Harness(DSH)的纯文本模型也能看懂图片:**智谱 GLM 免费视觉模型识图 + 当前模型推理**,无需主模型支持图像输入。
 
 > 由开源插件「鲸晴 JingQing」魔改优化而来。推荐识别路线:智谱 GLM 免费模型(glm-4.6v-flash / glm-4.1v-thinking-flash,均免费,支持视觉)。
@@ -74,6 +79,16 @@ ZHIPU_GLM_API_KEY: <你的key>
 
 - **GitHub 安装**:`dsh plugin --profile web remove taishan-vision`,重启 DSH;
 - **手动安装**:删除 `~/.dsh/profiles/node_modules/taishan-vision` 目录,并把 `cordis.patch.yml` 中对应 insert 条目移除,重启 DSH。
+
+## 💬 反馈与支持
+
+遇到问题先试一步诊断:在对话中让模型调用 **`taishan_diag`** 工具,会输出模型扫描快照、凭据状态、准入包装、路由配置——把这份输出连同报错信息一起提交,定位会快很多。
+
+- 🐛 **Bug 报告**:点击 [New Issue](https://github.com/iguanren/taishan-vision/issues/new/choose),选择 Bug report 模板(已内置 taishan_diag 输出占位)
+- 💡 **功能建议**:点击 [New Issue](https://github.com/iguanren/taishan-vision/issues/new/choose),选择 Feature request 模板
+- 🗣 **讨论交流**:访问 [Discussions](https://github.com/iguanren/taishan-vision/discussions)
+
+报告 Bug 时请附上:DSH 版本(`dsh --version`)、操作系统、复现步骤、`taishan_diag` 输出、相关截图。
 
 ---
 
