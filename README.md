@@ -1,7 +1,7 @@
 # 泰山识图 Taishan Vision v2.0
 
 <p align="center">
-  <img src="social-preview.png" width="120" alt="泰山识图" />
+  <img src="social-preview.png" width="640" alt="泰山识图" />
 </p>
 
 ![version](https://img.shields.io/badge/version-v2.0.0-2563EB)
