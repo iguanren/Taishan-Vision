@@ -1,10 +1,10 @@
-# 泰山识图 Taishan Vision v2.0.1
+# 泰山识图 Taishan Vision v2.1.0
 
 <p align="center">
   <img src="banner.png" style="width:100%; height:auto; border-radius:16px;" alt="泰山识图" />
 </p>
 
-![version](https://img.shields.io/badge/version-v2.0.1-2563EB)
+![version](https://img.shields.io/badge/version-v2.1.0-2563EB)
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![models](https://img.shields.io/badge/识别模型-GLM%20免费-16A34A)
 ![install](https://img.shields.io/badge/install-dsh%20plugin-8B5CF6)
@@ -46,7 +46,7 @@
 ### 方式一:GitHub 一键安装(推荐)
 
 ```bash
-dsh plugin --profile web add github:iguanren/taishan-vision#v2.0.1
+dsh plugin --profile web add github:iguanren/taishan-vision#v2.1.0
 ```
 
 DSH 会自动安装并把插件加入 profile 组合层,**重启 DSH 后生效**(无需手动改任何配置)。不想锁定版本可去掉 `#v2.0.1` 安装最新。
@@ -112,6 +112,12 @@ ZHIPU_GLM_API_KEY: <你的key>
 - 🗣 **讨论交流**:访问 [Discussions](https://github.com/iguanren/taishan-vision/discussions)
 
 报告 Bug 时请附上:DSH 版本(`dsh --version`)、操作系统、复现步骤、`taishan_diag` 输出、相关截图。
+
+## 📌 更新记录
+
+- **v2.1.0**:修复新机器(未配置智谱)开箱体验——自动补写 `zhipu-glm` 提供方声明后**立即重扫**,不再停留于"未检测到识图模型"的引导态;引导文案改为指向「设置 → 泰山识图 → API Key」面板直配;适配 DSH 0.1.2-rc.1(核对 llm-pi-ai/settings/credentials/pre-step 接口)。
+- **v2.0.1**:README 修订。
+- **v2.0**:静态版重构(鲸晴魔改),内置智谱 GLM 免费视觉模型、凭据感知路由、API Key 面板直配、诊断工具。
 
 ---
 
