@@ -1,10 +1,10 @@
-# 泰山识图 Taishan Vision v2.2.0
+# 泰山识图 Taishan Vision v2.2.1
 
 <p align="center">
   <img src="banner.png" style="width:100%; height:auto; border-radius:16px;" alt="泰山识图" />
 </p>
 
-![version](https://img.shields.io/badge/version-v2.2.0-2563EB)
+![version](https://img.shields.io/badge/version-v2.2.1-2563EB)
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![models](https://img.shields.io/badge/识别模型-GLM%20免费-16A34A)
 ![install](https://img.shields.io/badge/install-dsh%20plugin-8B5CF6)
@@ -46,10 +46,10 @@
 ### 方式一:GitHub 一键安装(推荐)
 
 ```bash
-dsh plugin --profile web add github:iguanren/taishan-vision#v2.2.0
+dsh plugin --profile web add github:iguanren/taishan-vision#v2.2.1
 ```
 
-DSH 会自动安装并把插件加入 profile 组合层,**重启 DSH 后生效**(无需手动改任何配置)。不想锁定版本可去掉 `#v2.2.0` 安装最新。
+DSH 会自动安装并把插件加入 profile 组合层,**重启 DSH 后生效**(无需手动改任何配置)。不想锁定版本可去掉 `#v2.2.1` 安装最新。
 
 > 如安装时报 pnpm 构建拦截提示,确认本插件无构建脚本时按提示放行即可(最新版通常无此问题)。
 
@@ -115,6 +115,7 @@ ZHIPU_GLM_API_KEY: <你的key>
 
 ## 📌 更新记录
 
+- **v2.2.1**:修复「调用识图工具报找不到附件」——dsh 0.1.2-rc.1 起 `dsh-session` 不再暴露 `.events` 数组(改为 `snapshotEvents()` 快照 API),旧解析必然落空;改为「快照 API → 旧版数组 → **pre-step 步骤级附件缓存**」三重兜底,并做 `sha256:` 前缀归一比较;另修推荐模型显示 `provider/undefined`(扫描日志与面板改取 `.id`)。
 - **v2.2.0**:修复「填了 GLM API Key 却看不到任何识图模型」——自动补写触发条件从"完全没有视觉模型"放宽为「没有可用视觉模型」或「用户已配置 `ZHIPU_GLM_API_KEY`」(此前只要 DSH 自带任意视觉模型,如 deepseek-v4-flash-vision-exp,zhipu-glm 就永远不会被声明,key 无处生效);填/改/清 Key 后立即补写+重扫,无需重启。
 - **v2.1.0**:修复新机器(未配置智谱)开箱体验——自动补写 `zhipu-glm` 提供方声明后**立即重扫**,不再停留于"未检测到识图模型"的引导态;引导文案改为指向「设置 → 泰山识图 → API Key」面板直配;适配 DSH 0.1.2-rc.1(核对 llm-pi-ai/settings/credentials/pre-step 接口)。
 - **v2.0.1**:README 修订。
