@@ -19,7 +19,8 @@
 - **任何视觉模型都可用**:插件扫描 DSH 中所有支持图像输入的模型,不绑定任何厂商;自带模型用户开箱即用
 - **凭据感知路由**:未配置 API Key 的模型默认停用,自动优先使用已配置的模型,不会出现反复失败的调用
 - **API Key 面板直配**:设置页内粘贴即保存,写入本机凭据文件,不回显明文、重启不丢
-- **零配置恢复**:zhipu-glm provider 声明(api/baseURL/`input:[text, image]`/contextWindow/maxTokens)内置,配置缺失时自动补写
+- **零配置恢复**:zhipu-glm provider 声明(api/baseURL/`input:[text, image]`/contextWindow/maxTokens)完全内置;**没有可用视觉模型**或**你已配置 GLM API Key** 时自动补写,填 Key 即出模型,无需手工建 provider
+- **适配新版 DSH(0.1.2-rc.1)**:核对 llm-pi-ai/settings/credentials/`agent/pre-step` 接口;附件解析兼容新版 `dsh-session` 快照 API,并带步骤级缓存兜底
 - **原生风格面板**:全部组件跟随 DSH 主题,深浅色模式清晰可辨
 - **注入防护**:视觉模型返回内容带围栏声明,防图片内指令注入
 
@@ -43,6 +44,8 @@
 
 ## 📦 安装
 
+> **环境要求**:`dsh plugin` 是 pnpm 的转发层,需要 PATH 中有 pnpm(`npm i -g pnpm` 即可);GitHub 安装还需要 git(用于 clone 仓库)。
+
 ### 方式一:GitHub 一键安装(推荐)
 
 ```bash
@@ -51,13 +54,28 @@ dsh plugin --profile web add github:iguanren/taishan-vision#v2.2.1
 
 DSH 会自动安装并把插件加入 profile 组合层,**重启 DSH 后生效**(无需手动改任何配置)。不想锁定版本可去掉 `#v2.2.1` 安装最新。
 
+**升级到新版本**:
+
+```bash
+dsh plugin --profile web update taishan-vision      # 跟随仓库最新提交
+dsh plugin --profile web add github:iguanren/taishan-vision#v2.2.1   # 或锁指定版本重装
+```
+
 > 如安装时报 pnpm 构建拦截提示,确认本插件无构建脚本时按提示放行即可(最新版通常无此问题)。
 
-### 方式二:手动安装
+### 方式二:本地打包安装(离线 / 分发)
 
-1. **放包**:把 `taishan-vision` 文件夹整个复制到 DSH profile 的 node_modules 目录
-   - Web 版:`~/.dsh/profiles/node_modules/`
-2. **挂载**:在 web profile 的补丁文件 `~/.dsh/profiles/web/cordis.patch.yml` 中追加(若已存在旧版 jingqing 条目请替换):
+直接用发布产物 `taishan-vision-2.2.1.tgz`(或先解压 zip):
+
+```bash
+dsh plugin --profile web add file:taishan-vision-2.2.1.tgz
+```
+
+### 方式三:手动复制
+
+1. **放包**:把 `taishan-vision` 文件夹整个复制到 web profile 的 node_modules:
+   - `~/.dsh/profiles/web/node_modules/taishan-vision`
+2. **挂载**:在补丁文件 `~/.dsh/profiles/web/cordis.patch.yml` 中追加(若已存在旧版 jingqing 条目请替换):
 
    ```yaml
    - insert:
@@ -89,7 +107,10 @@ ZHIPU_GLM_API_KEY: <你的key>
 
 ## 🛠 使用
 
-发送带图片的消息,模型会自动调用识图工具;也可让模型直接描述图片。诊断:让模型调用 `taishan_diag` 工具查看扫描快照、凭据状态、路由配置。
+发送带图片的消息,插件检测到当前模型不支持直接看图时会自动注入识图指令,模型会调用 `taishan_describe_image` 工具(参数 `image_ref` 传图片附件 ID)识别图片;也可直接让模型"描述这张图"。
+
+- **路由策略**:视觉模型按性价比自动排序(免费 GLM 最优先),失败自动降级到下一个可用模型;可在「设置 → 泰山识图 → 模型检测结果」手动启停、在「识图路由」拖动排序
+- **诊断**:让模型调用 **`taishan_diag`** 工具查看扫描快照、凭据状态、准入包装、路由配置
 
 ## ⚙️ 默认推荐模型(免费)
 
@@ -101,7 +122,15 @@ ZHIPU_GLM_API_KEY: <你的key>
 ## 🧹 卸载
 
 - **GitHub 安装**:`dsh plugin --profile web remove taishan-vision`,重启 DSH;
-- **手动安装**:删除 `~/.dsh/profiles/node_modules/taishan-vision` 目录,并把 `cordis.patch.yml` 中对应 insert 条目移除,重启 DSH。
+- **手动安装**:删除 `~/.dsh/profiles/web/node_modules/taishan-vision` 目录,并把 `~/.dsh/profiles/web/cordis.patch.yml` 中对应 insert 条目移除,重启 DSH。
+
+## 🔧 常见问题
+
+- **`dsh plugin` 报 pnpm 找不到 / pnpm failed**:`npm i -g pnpm` 后**重启终端**再试(pnpm 加入 PATH 需要新会话);
+- **GitHub 安装失败**:需先安装 git 并加入 PATH;本插件无构建脚本,报 allowBuilds 提示可放行或忽略;
+- **填了 GLM API Key 却没模型**:至少升级到 **v2.2.0**(配置 Key 会自动补写并重扫,无需重启);若仍无,在面板点「重新扫描」并留意日志;
+- **识图工具报"找不到附件"**:升级到 **v2.2.1**(已兼容新版 DSH 的 session 快照 API + 步骤级附件缓存兜底);
+- **识图失败/超时**:在「设置 → 泰山识图」调大超时(默认 20s)与输出上限;先跑一次 `taishan_diag` 看凭据与路由状态,再报障。
 
 ## 💬 反馈与支持
 
