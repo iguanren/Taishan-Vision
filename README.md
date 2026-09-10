@@ -1,9 +1,15 @@
 # 泰山识图 Taishan Vision v2.3.0
 
+<p align="center">
+  <img src="banner.png" style="width:100%; height:auto; border-radius:16px;" alt="泰山识图" />
+</p>
+
 让 DeepSeek Harness(DSH)的纯文本模型也能看图:**智谱 GLM 免费视觉模型识图 + 当前模型推理**,无需主模型支持图像输入。
 
 ![version](https://img.shields.io/badge/version-v2.3.0-2563EB)
 ![license](https://img.shields.io/badge/license-MIT-green)
+
+---
 
 ## ✨ 功能
 
@@ -13,6 +19,7 @@
 - **面板直配**:在「设置 → 泰山识图 → API Key」粘贴 Key 即保存,不回显明文、重启不丢
 - **注入防护**:视觉模型返回内容带围栏声明,防图片内指令注入
 - **诊断工具**:`taishan_diag` 输出凭据/路由/包装全量状态
+- **自动检查更新**:启动时静默检查 GitHub 最新版本,面板显示升级提示
 
 ## 📦 安装
 
@@ -96,7 +103,7 @@ dsh plugin --profile web remove taishan-vision
 
 ## 📌 更新记录
 
-- **v2.3.0**:凭据感知路由改进——未配置 API Key 的模型默认关闭(`configured===true` 才启用);扫描完成后自动检测凭据变化并启停路由;面板新增「检查更新」功能;适配 DSH **0.1.5-rc.1**(今日发布)。
+- **v2.3.0**:凭据感知路由改进——未配置 API Key 的模型默认关闭(`configured===true` 才启用);扫描完成后自动检测凭据变化并启停路由;面板新增「检查更新」功能;适配 DSH **0.1.5-rc.1**。
 - **v2.2.1**:修复「找不到附件」——兼容 dsh session 快照 API + pre-step 步骤级附件缓存兜底。
 - **v2.2.0**:修复「填了 GLM Key 却看不到模型」——自动补写触发条件放宽为「无可用模型 或 已配 GLM Key」;填 Key 即出模型。
 - **v2.1.0**:修复新机器开箱体验——补写后立即可重扫;引导文案指向面板直配。
