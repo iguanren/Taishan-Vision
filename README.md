@@ -4,7 +4,7 @@
   <img src="banner.png" style="width:100%; height:auto; border-radius:16px;" alt="泰山识图" />
 </p>
 
-让 DeepSeek Harness(DSH)的纯文本模型也能看图:**智谱 GLM 免费视觉模型识图 + 当前模型推理**,无需主模型支持图像输入。
+让 DeepSeek Harness(DSH)的纯文本模型也能看图：**智谱 GLM 免费视觉模型识图 + 当前模型推理**,无需主模型支持图像输入。
 
 ![version](https://img.shields.io/badge/version-v5.0-2563EB)
 ![license](https://img.shields.io/badge/license-MIT-green)
@@ -25,7 +25,7 @@
 - **手动检查更新**:折叠头「检查更新」按钮主动联网检测,启动不自动检查
 
 <p align="center">
-  <img src="https://community.codewave.163.com:443/upload/app/afaec238-82f5-4996-8fdd-0aae42f393de/msedge_otGQ8CI3Pp_afaec238-82f5-4996-8fdd-0aae42f393de_efp2CBT4_20260925123119018.png" style="width:100%; height:auto; border-radius:16px;" alt="插件配置面板" />
+  <img src="https://community.codewave.163.com:443/upload/app/afaec238-82f5-4996-8fdd-0aae42f393de/msedge_10v1aMGVnF_afaec238-82f5-4996-8fdd-0aae42f393de_efp9EAL7_20260925125209105.png" style="width:100%; height:auto; border-radius:16px;" alt="插件配置面板" />
 </p>
 
 ## 📦 安装
